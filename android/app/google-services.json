@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "926039006450",
+    "project_id": "tirtaapp-767f9",
+    "storage_bucket": "tirtaapp-767f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926039006450:android:7aaeeecf300200f0d7846b",
+        "android_client_info": {
+          "package_name": "com.ferdifir.tirta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "926039006450-cl5j48ikv3hhrerca7rato8q93b73h44.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ferdifir.tirta",
+            "certificate_hash": "30b6a1d829354a7ed3c7ed10d762d2c544ed14a9"
+          }
+        },
+        {
+          "client_id": "926039006450-mfakuic38h9uan9lvi5u2j7tkfg9v8bd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ2rrfdJ-igK1fG9bU47dwlus9MXxLMoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "926039006450-mfakuic38h9uan9lvi5u2j7tkfg9v8bd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "926039006450-iu7dgj9rbqao7s8184o7apeir26nlmtt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tirta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
