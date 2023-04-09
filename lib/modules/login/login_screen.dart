@@ -116,11 +116,11 @@ class LoginScreen extends StatelessWidget {
                     .then((value) {
                   if (value['result']) {
                     SharedPref.saveString(uidPrefKey, value['uid']);
-                    db.addUser(
-                      value['uid'],
-                      controller.emailTxtController.text,
-                      controller.passwordTxtController.text,
-                    );
+                    // db.addUser(
+                    //   value['uid'],
+                    //   controller.emailTxtController.text,
+                    //   controller.passwordTxtController.text,
+                    // );
                     Get.back();
                     Get.offAllNamed(Routes.MENU);
                   } else {

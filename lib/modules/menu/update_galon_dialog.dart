@@ -34,11 +34,11 @@ class UpdateGalonDialog extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      if (int.parse(controller.galonController.text) <= 0) {
-                        controller.galonController.text = '0';
+                      if (int.parse(controller.galonController.value.text) <= 0) {
+                        controller.galonController.value.text = '0';
                       } else {
-                        controller.galonController.text =
-                            (int.parse(controller.galonController.text) - 1)
+                        controller.galonController.value.text =
+                            (int.parse(controller.galonController.value.text) - 1)
                                 .toString();
                       }
                     },
@@ -46,8 +46,9 @@ class UpdateGalonDialog extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
-                      controller: controller.galonController,
+                      controller: controller.galonController.value,
                       textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         labelText: 'Jumlah Galon',
                         border: OutlineInputBorder(),
@@ -56,9 +57,13 @@ class UpdateGalonDialog extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      controller.galonController.text =
-                          (int.parse(controller.galonController.text) + 1)
+                      if (controller.galonController.value.text == '') {
+                        controller.galonController.value.text = '1';
+                      } else {
+                        controller.galonController.value.text =
+                          (int.parse(controller.galonController.value.text) + 1)
                               .toString();
+                      }
                     },
                     icon: const Icon(Icons.add),
                   ),
@@ -67,6 +72,7 @@ class UpdateGalonDialog extends StatelessWidget {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
+                  controller.updateStock(controller.uid!);
                   Get.back();
                 },
                 style: ElevatedButton.styleFrom(

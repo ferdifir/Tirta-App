@@ -13,7 +13,7 @@ class MenuController extends GetxController {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
-  final galonController = TextEditingController();
+  final galonController = TextEditingController().obs;
   String? uid;
   final showLoading = false.obs;
 
@@ -33,6 +33,9 @@ class MenuController extends GetxController {
           phoneController.text = 'No. Telp';
           addressController.text = 'Alamat';
         }
+      });
+      getStock(uid!).listen((event) {
+        galonController.value.text = event.toString();
       });
     } else {
       showLoading.value = false;
@@ -57,5 +60,13 @@ class MenuController extends GetxController {
 
   Stream<Profile> getUser(String uid) {
     return db.getUser(uid);
+  }
+
+  Stream<int> getStock(String uid) {
+    return db.getStockGalon(uid);
+  }
+
+  updateStock(String uid) {
+    db.updateStockGalon(uid, galonController.value.text);
   }
 }

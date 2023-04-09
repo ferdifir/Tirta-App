@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tirta/modules/menu/menu_controller.dart';
 
 import '../../routes/app_routes.dart';
 import 'update_galon_dialog.dart';
 
 class FiturMenu extends StatelessWidget {
-  const FiturMenu({
+  FiturMenu({
     Key? key,
   }) : super(key: key);
+
+  final controller = Get.find<MenuController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class FiturMenu extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            Get.toNamed(Routes.TRANSACTION);
+            Get.toNamed(Routes.TRANSACTION,arguments: controller.uid);
           },
           leading: const Icon(Icons.home),
           title: const Text('Riwayat Transaksi'),

@@ -14,28 +14,36 @@ class MenuScreen extends GetView<MenuController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => controller.showLoading.value ? SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 50,
-              width: double.infinity,
-            ),
-            const PhotoMenu(),
-            const SizedBox(height: 10),
-            ProfileMenu(),
-            const ListTile(
-              leading: Icon(Icons.water_drop_outlined),
-              title: Text('7 Galon'),
-            ),
-            const FiturMenu(),
-            const SizedBox(height: 20),
-            LogoutButton(),
-          ],
-        ),
-      ) : const Center(child: CircularProgressIndicator())),
+      body: Obx(() => controller.showLoading.value
+          ? SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                  ),
+                  const PhotoMenu(),
+                  const SizedBox(height: 10),
+                  ProfileMenu(),
+                  ListTile(
+                    leading: const Icon(Icons.water_drop_outlined),
+                    title: StreamBuilder<int>(
+                      stream: controller.getStock(controller.uid!),
+                      builder: (context, snapshot) {
+                        return Text(
+                            '${snapshot.data} Galon');
+                      }
+                    ),
+                  ),
+                  FiturMenu(),
+                  const SizedBox(height: 20),
+                  LogoutButton(),
+                ],
+              ),
+            )
+          : const Center(child: CircularProgressIndicator())),
     );
   }
 }

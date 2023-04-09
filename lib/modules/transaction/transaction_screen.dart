@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:tirta/model/transaction.dart';
 import 'package:tirta/utils/assets.dart';
 
+import '../../services/firebase_db.dart';
+
 class TransactionScreen extends StatelessWidget {
-  const TransactionScreen({super.key});
+  TransactionScreen({super.key});
+
+  final db = FirebaseDbServices();
+  final uid = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +54,21 @@ class TransactionScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   width: Get.width * 0.18,
-                  child: Text('status'),
+                  child: const Text('status'),
                 ),
                 SizedBox(
                   width: Get.width * 0.21,
-                  child: Text('item'),
+                  child: const Text('item'),
                 ),
                 SizedBox(
                   width: Get.width * 0.22,
-                  child: Text('jumlah'),
+                  child: const Text('jumlah'),
                 ),
                 SizedBox(
                   width: Get.width * 0.25,
-                  child: Text('tanggal'),
+                  child: const Text('tanggal'),
                 ),
-                Expanded(
+                const Expanded(
                   child: Text('waktu'),
                 ),
               ],
@@ -79,15 +85,25 @@ class TransactionScreen extends StatelessWidget {
                     left: 4,
                     right: 4,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(Icons.check),
-                      Text('2 GALON'),
-                      Text('Rp 14.000'),
-                      Text('01 Feb 2023'),
-                      Text('12:24'),
-                    ],
+                  child: StreamBuilder<HistoryTransaction>(
+                    stream: db.getTransaction(uid),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        print(snapshot.data!.item);
+                      } else {
+                        print('salah methodnya');
+                      }
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Icon(Icons.check),
+                          const Text('2 GALON'),
+                          const Text('Rp 14.000'),
+                          const Text('01 Feb 2023'),
+                          const Text('12:24'),
+                        ],
+                      );
+                    }
                   ),
                 );
               },
