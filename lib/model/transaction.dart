@@ -21,4 +21,13 @@ class HistoryTransaction {
       waktu: map['waktu'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'status': status,
+      'item': item,
+      'jumlah': jumlah,
+      'waktu': waktu,
+    };
+  }
 }

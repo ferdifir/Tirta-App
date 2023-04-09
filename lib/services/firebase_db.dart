@@ -16,10 +16,18 @@ class FirebaseDbServices {
     });
   }
 
-  Stream<HistoryTransaction> getTransaction(String uid) {
+  Stream<List<HistoryTransaction>> getTransaction(String uid) {
     return _db.collection('users').doc(uid).snapshots().map((event) {
-      final history = event['historyTransaction'];
-      return HistoryTransaction.fromMap(history);
+      final history = event['historyTransaction'] as List<dynamic>;
+      return history
+          .map((transaction) => HistoryTransaction.fromMap(transaction))
+          .toList();
+    });
+  }
+
+  addTransaction(String uid, HistoryTransaction transaction) {
+    _db.collection('users').doc(uid).update({
+      'historyTransaction': FieldValue.arrayUnion([transaction.toMap()])
     });
   }
 

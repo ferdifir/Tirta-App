@@ -18,6 +18,8 @@ dependencies:
   firebase_auth: ^4.4.0
   cloud_firestore: ^4.5.0
   shared_preferences: ^2.1.0
+  chips_choice: ^3.0.0
+  image_picker: ^0.8.7+1
 
 dev_dependencies:
   flutter_test:
